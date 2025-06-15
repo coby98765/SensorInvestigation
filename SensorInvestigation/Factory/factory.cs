@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Sensor.models;
 
-namespace SensorInvestigation.Factory
+
+namespace SensorInvestigation.models
     {
     internal class factory
         {
