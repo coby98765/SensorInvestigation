@@ -1,4 +1,4 @@
-﻿using Sensor.models;
+﻿using SensorInvestigation.models;
 
 
 namespace Sensor
