@@ -11,7 +11,7 @@ namespace Sensor
             {
             //DB Connection
             MySQLData DBConnection = MySQLData.Instance;
-
+            DBConnection.Setup();
             }
         }
     }
