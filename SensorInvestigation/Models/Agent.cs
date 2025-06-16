@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using SensorInvestigation.models;
@@ -31,8 +30,9 @@ namespace SensorInvestigation.models
                     }
                 } 
             }
-        public Agent(string name,string rank,string weaknesses)
+        public Agent(string name,string rank,string weaknesses, int id=0)
             {
+            ID = id;
             Name = name;
             Rank = rank;
             weakPoints = weaknesses.Split(" ").ToList();
