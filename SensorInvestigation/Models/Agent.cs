@@ -30,12 +30,12 @@ namespace SensorInvestigation.models
                     }
                 } 
             }
-        public Agent(string name,string rank,string weaknesses, int id=0)
+        public Agent(string name,string rank, List<string> weaknesses, int id=0)
             {
             ID = id;
             Name = name;
             Rank = rank;
-            weakPoints = weaknesses.Split(" ").ToList();
+            weakPoints = weaknesses;
             }
         public int Activate()
             {
