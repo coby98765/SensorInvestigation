@@ -39,7 +39,61 @@ namespace SensorInvestigation.models
             }
         public int Activate()
             {
-            return 0;
+            List<string> weaknesses = new(weakPoints);
+            List<string> sensors = new(SensorList);
+            ActivateSensors();
+            int count = CheckAgentWeaknesses(weaknesses, sensors);
+            DeActivateSensors();
+            Console.WriteLine($"{count}/{weakPoints.Count()}");
+            return count;
+            }
+
+        private int CheckAgentWeaknesses(List<string> weaknesses, List<string> sensors, int count=0)
+            {
+            Printer();
+            if (sensors == null || sensors.Count == 0)
+                {
+                return count;
+                }
+            else
+                {
+                if (weaknesses.Contains(sensors[0]))
+                    {
+                    weaknesses.Remove(sensors[0]);
+                    count++;
+                    }
+                sensors.RemoveAt(0);
+                }
+            return CheckAgentWeaknesses(weaknesses, sensors, count);
+            }
+
+        private void ActivateSensors()
+            {
+            foreach(string sensor in SensorList)
+                {
+                //sensor.Activate();
+                }
+            }
+
+        private void DeActivateSensors()
+            {
+            foreach (string sensor in SensorList)
+                {
+                //sensor.InActivate();
+                }
+            }
+
+        public void Printer()
+            {
+            Console.WriteLine(
+
+                "\n-----------------------------\n"+
+                $"({ID}) {Rank.ToUpper()} \n" +
+                $"\t{Name}\n" +
+                $"\tWeaknesses: {string.Join(" ",weakPoints)}\n" +
+                $"\tSensors: {string.Join(" ", SensorList)}"+
+                "\n-----------------------------\n"
+                );
             }
         }
     }
