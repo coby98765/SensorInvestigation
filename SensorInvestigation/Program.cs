@@ -1,4 +1,6 @@
 ﻿using SensorInvestigation.models;
+using SensorInvestigation.DB;
+
 
 
 namespace Sensor
@@ -6,6 +8,10 @@ namespace Sensor
     class Program
         {
         static void Main()
-            { }
+            {
+            //DB Connection
+            MySQLData DBConnection = MySQLData.Instance;
+            DBConnection.Setup();
+            }
         }
     }
