@@ -37,7 +37,7 @@ namespace SensorInvestigation.models
             Rank = rank;
             weakPoints = weaknesses;
             }
-        public int Activate()
+        public bool Activate()
             {
             List<string> weaknesses = new(weakPoints);
             List<string> sensors = new(SensorList);
@@ -45,12 +45,12 @@ namespace SensorInvestigation.models
             int count = CheckAgentWeaknesses(weaknesses, sensors);
             DeActivateSensors();
             Console.WriteLine($"{count}/{weakPoints.Count()}");
-            return count;
+            return  (count - weakPoints.Count()) == 0;
             }
 
+        //Recursion sensor scan
         private int CheckAgentWeaknesses(List<string> weaknesses, List<string> sensors, int count=0)
             {
-            Printer();
             if (sensors == null || sensors.Count == 0)
                 {
                 return count;

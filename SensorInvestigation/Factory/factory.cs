@@ -12,17 +12,27 @@ namespace SensorInvestigation.models
         {
         private readonly string[] typeOfSensors = { "basic", "audio", "thermal" };
         private readonly string[] typeOfSensRank = { "private", "sergeant", "lieutenant", "colonel", "general" };
-
+        public List<Sensor> sensors = new();
         private Random rnd = new();
         public Agent CreateAgent()
             {
             string name = CreateName();
-            int RankIndex = rnd.Next(typeOfSensRank.Length);
+            //temp for testing
+            int RankIndex = 0;
+            //int RankIndex = rnd.Next(typeOfSensRank.Length);
             string rank = typeOfSensRank[RankIndex];
             List<string> weaknesses = CreateWeaknesses(RankIndex + 1);
             Agent agent = new(name, rank, weaknesses);
             return agent;
             }
+
+        public List<Sensor> CreateSensors(int amount)
+            {
+
+
+            return null;
+            }
+
 
         private List<string> CreateWeaknesses(int amount)
             {
