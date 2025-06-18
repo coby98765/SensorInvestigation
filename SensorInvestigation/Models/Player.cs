@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
+using static Org.BouncyCastle.Asn1.Cmp.Challenge;
 
 namespace SensorInvestigation.models
     {
@@ -52,6 +54,17 @@ namespace SensorInvestigation.models
                 return null;
                 }
             }
+        public void Print()
+            {
+            Console.WriteLine(
 
+                "\n-----------------------------\n" +
+                $"({ID}) {UserName}\n" +
+                $"\t{FirstName} {LastName}\n" +
+                $"\tLevel: {Level}\n" +
+                $"\tPassword: {_password}" +
+                "\n-----------------------------\n"
+                );
+            }
         }
     }

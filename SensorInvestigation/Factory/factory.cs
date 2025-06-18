@@ -10,7 +10,7 @@ namespace SensorInvestigation.models
     {
     internal class Factory
         {
-        private readonly string[] typeOfSensors = { "basic", "audio", "thermal" };
+        private readonly string[] typeOfSensors = {"audio", "thermal", "pulse", "motion", "magnetic", "signal", "light"};
         private readonly string[] typeOfSensRank = { "private", "sergeant", "lieutenant", "colonel", "general" };
         public List<Sensor> sensors = new();
         private Random rnd = new();
@@ -28,9 +28,14 @@ namespace SensorInvestigation.models
 
         public List<Sensor> CreateSensors(int amount)
             {
-
-
-            return null;
+            List<Sensor> sensors = new();
+            for(int i=0; i <=amount;i++)
+                {
+                int rndType = rnd.Next(typeOfSensors.Count());
+                Sensor sensor = new(typeOfSensors[rndType], sensors.Count() + 1);
+                sensors.Add(sensor);
+                }
+            return sensors;
             }
 
 

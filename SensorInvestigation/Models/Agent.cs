@@ -15,7 +15,7 @@ namespace SensorInvestigation.models
         public string Name { get; set; }
         private string _rank { get; set; }
         private List<string> weakPoints = new();
-        public List<string> SensorList = new();
+        public List<Sensor> SensorList = new();
         public string Rank { 
             get {return _rank;}  
             set {
@@ -40,7 +40,7 @@ namespace SensorInvestigation.models
         public bool Activate()
             {
             List<string> weaknesses = new(weakPoints);
-            List<string> sensors = new(SensorList);
+            List<Sensor> sensors = new(SensorList);
             ActivateSensors();
             int count = CheckAgentWeaknesses(weaknesses, sensors);
             DeActivateSensors();
@@ -49,7 +49,7 @@ namespace SensorInvestigation.models
             }
 
         //Recursion sensor scan
-        private int CheckAgentWeaknesses(List<string> weaknesses, List<string> sensors, int count=0)
+        private int CheckAgentWeaknesses(List<string> weaknesses, List<Sensor> sensors, int count=0)
             {
             if (sensors == null || sensors.Count == 0)
                 {
@@ -57,9 +57,9 @@ namespace SensorInvestigation.models
                 }
             else
                 {
-                if (weaknesses.Contains(sensors[0]))
+                if (weaknesses.Contains(sensors[0].Type))
                     {
-                    weaknesses.Remove(sensors[0]);
+                    weaknesses.Remove(sensors[0].Type);
                     count++;
                     }
                 sensors.RemoveAt(0);
@@ -69,18 +69,28 @@ namespace SensorInvestigation.models
 
         private void ActivateSensors()
             {
-            foreach(string sensor in SensorList)
+            foreach(Sensor sensor in SensorList)
                 {
-                //sensor.Activate();
+                sensor.Activate();
                 }
             }
 
         private void DeActivateSensors()
             {
-            foreach (string sensor in SensorList)
+            foreach (Sensor sensor in SensorList)
                 {
-                //sensor.InActivate();
+                sensor.InActivate();
                 }
+            }
+
+        private string SensorListToString()
+            {
+            string str = "";
+            foreach(Sensor sensor in SensorList)
+                {
+                str += sensor.Type + ",";
+                }
+            return str;
             }
 
         public void Printer()
@@ -91,7 +101,7 @@ namespace SensorInvestigation.models
                 $"({ID}) {Rank.ToUpper()} \n" +
                 $"\t{Name}\n" +
                 $"\tWeaknesses: {string.Join(" ",weakPoints)}\n" +
-                $"\tSensors: {string.Join(" ", SensorList)}"+
+                $"\tSensors: {SensorListToString()}"+
                 "\n-----------------------------\n"
                 );
             }
