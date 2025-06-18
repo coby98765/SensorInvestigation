@@ -40,5 +40,18 @@ namespace SensorInvestigation.Models
             }
 
         public void LevelUp() { Level++; }
+
+        public string GetPassword(string key) 
+            { 
+            if(key == "root")
+                {
+                return _password;
+                }
+            else
+                {
+                return null;
+                }
+            }
+
         }
     }
