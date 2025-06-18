@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SensorInvestigation.Models
+namespace SensorInvestigation.models
     {
     internal class Player
         {
