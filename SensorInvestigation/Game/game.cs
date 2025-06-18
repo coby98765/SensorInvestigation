@@ -10,6 +10,7 @@ namespace SensorInvestigation.models
     {
     internal class Game
         {
+
         
         }
     }
