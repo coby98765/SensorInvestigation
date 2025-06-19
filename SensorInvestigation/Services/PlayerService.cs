@@ -101,6 +101,37 @@ namespace SensorInvestigation.models
             return player;
             }
 
+        //ger player by username
+        public Player GetPlayerByUsername(string username)
+            {
+            Player player = null;
+            MySqlCommand cmd = null;
+            MySqlDataReader reader = null;
+            string query = $"SELECT * FROM people WHERE people.user_name = {username} LIMIT 1;";
+            try
+                {
+                MySqlConnection connection = _sqlData.GetConnection();
+                cmd = new MySqlCommand(query, connection);
+                reader = cmd.ExecuteReader();
+                while (reader.Read())
+                    {
+                    player = PlayerFormatter(reader);
+                    }
+                }
+            catch (Exception ex)
+                {
+                Console.WriteLine($"Error while fetching Player: {ex.Message}");
+                throw;
+                }
+            finally
+                {
+                if (reader != null && !reader.IsClosed)
+                    reader.Close();
+                _sqlData.CloseConnection();
+                }
+            return player;
+            }
+
         //Update
         public Player UpdatePlayerLevel(Player player)
             {
